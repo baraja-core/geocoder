@@ -1,7 +1,7 @@
 {
-	"name": "baraja-core/template",
-	"description": "This is a template package.",
-	"homepage": "https://github.com/baraja-core/template",
+	"name": "baraja-core/geocoder",
+	"description": "Rewrite real address to geo coordinates.",
+	"homepage": "https://github.com/baraja-core/geocoder",
 	"authors": [
 		{
 			"name": "Jan Barášek",
@@ -19,7 +19,8 @@
 		"phpstan/phpstan-deprecation-rules": "^0.12.6",
 		"phpstan/phpstan-strict-rules": "^0.12.10",
 		"spaze/phpstan-disallowed-calls": "^1.1",
-		"roave/security-advisories": "dev-master"
+		"roave/security-advisories": "dev-master",
+		"nette/di": "^3.0"
 	},
 	"autoload": {
 		"classmap": [

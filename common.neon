@@ -1,0 +1,2 @@
+extensions:
+	geocoder: Baraja\Geocoder\GeocoderExtension
