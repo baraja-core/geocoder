@@ -5,15 +5,22 @@ declare(strict_types=1);
 namespace Baraja\Geocoder;
 
 
+use Baraja\EcommerceStandard\DTO\AddressInterface;
+use Baraja\EcommerceStandard\DTO\CoordinatesInterface;
+
 final class Geocoder
 {
 	/** @var GeocoderAdapter[] */
 	private array $adapters = [];
 
 
-	public function decode(Address|string $address): Coordinates
+	public function decode(AddressInterface|string $address): CoordinatesInterface
 	{
-		$addressString = (string) $address;
+		if ($address instanceof AddressInterface) {
+			$addressString = $this->serializeAddress($address);
+		} else {
+			$addressString = $address;
+		}
 		$lastException = null;
 		foreach ($this->getGeocoderAdapters() as $adapter) {
 			try {
@@ -24,7 +31,7 @@ final class Geocoder
 		}
 
 		throw new \LogicException(
-			'Address "' . $addressString . '" can not be geocoded.',
+			sprintf('Address "%s" can not be geocoded.', $addressString),
 			500,
 			$lastException,
 		);
@@ -47,5 +54,11 @@ final class Geocoder
 	public function addGeocoderAdapter(GeocoderAdapter $adapter): void
 	{
 		$this->adapters[] = $adapter;
+	}
+
+
+	private function serializeAddress(AddressInterface $address): string
+	{
+		return (string) $address;
 	}
 }

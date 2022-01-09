@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Baraja\Geocoder;
 
 
-class Coordinates
+use Baraja\EcommerceStandard\DTO\CoordinatesInterface;
+
+class Coordinates implements CoordinatesInterface
 {
 	public const
 		LATITUDE_MIN_VALUE = -90.0,
@@ -19,14 +21,10 @@ class Coordinates
 		private float $longitude,
 	) {
 		if ($latitude < self::LATITUDE_MIN_VALUE || $latitude > self::LATITUDE_MAX_VALUE) {
-			throw new \InvalidArgumentException(
-				'Latitude is invalid, because value "' . $latitude . '" given.',
-			);
+			throw new \InvalidArgumentException(sprintf('Latitude is invalid, because value "%d" given.', $latitude));
 		}
 		if ($longitude < self::LONGITUDE_MIN_VALUE || $longitude > self::LONGITUDE_MAX_VALUE) {
-			throw new \InvalidArgumentException(
-				'Longitude is invalid, because value "' . $longitude . '" given.',
-			);
+			throw new \InvalidArgumentException(sprintf('Longitude is invalid, because value "%d" given.', $longitude));
 		}
 	}
 
@@ -113,7 +111,7 @@ class Coordinates
 			return new self((float) $match[2], (float) $match[1]);
 		}
 
-		throw new \InvalidArgumentException('Nothing detected in "' . $haystack . '".');
+		throw new \InvalidArgumentException(sprintf('Nothing detected in "%s".', $haystack));
 	}
 
 

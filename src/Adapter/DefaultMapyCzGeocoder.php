@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Baraja\Geocoder;
 
 
+use Baraja\EcommerceStandard\DTO\CoordinatesInterface;
+
 final class DefaultMapyCzGeocoder implements GeocoderAdapter
 {
-	public function decode(string $address): Coordinates
+	public function decode(string $address): CoordinatesInterface
 	{
 		$apiResponse = $this->downloadApiResponse($address);
 		$xml = simplexml_load_string($apiResponse);
@@ -29,7 +31,7 @@ final class DefaultMapyCzGeocoder implements GeocoderAdapter
 	private function downloadApiResponse(string $address): string
 	{
 		return (string) file_get_contents(
-			'https://api4.mapy.cz/geocode?query=' . rawurlencode($address),
+			sprintf('https://api4.mapy.cz/geocode?query=%s', rawurlencode($address)),
 		);
 	}
 }
