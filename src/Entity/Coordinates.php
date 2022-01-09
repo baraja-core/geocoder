@@ -50,7 +50,7 @@ class Coordinates implements CoordinatesInterface
 			preg_match(
 				'/^(-?[1-8]?\d(?:\.\d{1,18})?|90(?:\.0{1,18})?)N?,?\s*?(-?(?:1[0-7]|[1-9])?\d(?:\.\d{1,18})?|180(?:\.0{1,18})?)E?$/u',
 				$haystack,
-				$match
+				$match,
 			) === 1
 		) {
 			$lat = (float) ($match[1]);
@@ -64,7 +64,7 @@ class Coordinates implements CoordinatesInterface
 			preg_match(
 				'/^([0-8]?\d|90)°\s?([0-5]?\d\')?\s?(\d+(?:\.\d{1,5})")?N?,?\s?(1[0-7]?\d|180)°\s?([0-5]?\d\')?\s?(\d+(?:\.\d{1,5})")?E?$/u',
 				$haystack,
-				$match
+				$match,
 			) === 1
 		) {
 			$latDeg = (int) ($match[1]);
@@ -86,7 +86,7 @@ class Coordinates implements CoordinatesInterface
 			preg_match(
 				'/^N?\s?([0-8]?\d|90)°\s?(\d+(?:\.\d{1,5})\'),?\s?E?\s?(1[0-7]?\d|180)°\s?(\d+(?:\.\d{1,5})\')$/u',
 				$haystack,
-				$match
+				$match,
 			) === 1
 		) {
 			$latDeg = (int) ($match[1]);
