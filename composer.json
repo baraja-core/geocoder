@@ -10,7 +10,7 @@
 	],
 	"require": {
 		"php": "^8.0",
-		"baraja-core/ecommerce-standard": "0.0"
+		"baraja-core/ecommerce-standard": "^0.0"
 	},
 	"require-dev": {
 		"nette/di": "^3.0",
